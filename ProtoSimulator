@@ -1,0 +1,107 @@
+
+import java.util.*;
+
+public class ProtoSimulator
+{
+    public static void main (String [] args)
+    {
+        Scanner keyboard = new Scanner (System.in);
+        int minutes = 0; //time in the match
+        int homeGoals = 0; //goals by the home team
+        int awayGoals = 0; //goals by the away team
+        int awayYellowCards = 0; //yellow cards
+        int homeYellowCards = 0; 
+        int awayRedCards = 0; //red cards
+        int homeRedCards = 0;
+        int homeShots = 0; //shots
+        int awayShots = 0;
+
+        int x; //decider variable for what happened
+
+        int extraTime = (int) (Math.random () * 5) + 2; //stoppageTime
+        
+
+        while (minutes < (extraTime + 90))
+        {
+            x = (int) (Math.random () * 100) + 1;
+            minutes++;
+            System.out.println (minutes + " minute.");
+            if (x == 56 || x == 90)
+            {
+                System.out.println ("HOME GOAL");
+                homeGoals++;
+                System.out.println ("Home: " + homeGoals + "\t Away: " + awayGoals);
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            else if (x == 34 || x == 67)
+            {
+                System.out.println ("AWAY GOAL");
+                awayGoals++;
+                System.out.println ("Home: " + homeGoals + "\t Away:  " + awayGoals);
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            else if (x >= 2 && x <= 3)
+            {
+                System.out.println ("YELLOW CARD AGAINST HOME");
+                homeYellowCards++;
+                System.out.println ("Home: " + homeGoals + "\t Away:  " + awayGoals);
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            else if (x >= 6 && x <= 7)
+            {
+                System.out.println ("YELLOW CARD AGAINST HOME");
+                homeYellowCards++;
+                System.out.println ("Home: " + homeGoals + "\t Away:  " + awayGoals);
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            else if (x == 58)
+            {
+                System.out.println ("RED CARD AGAINST HOME");
+                homeRedCards++;
+                System.out.println ("Home: " + homeGoals + "\t Away:  " + awayGoals); 
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            else if (x == 87)
+            {
+                System.out.println ("RED CARD AGAINST AWAY");
+                awayRedCards++;
+                System.out.println ("Home: " + homeGoals + "\t Away: " + awayGoals);
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+            if (minutes == 45)
+            {
+                System.out.println ("HALFTIME");
+            }
+            if (minutes == 90)
+            {
+                System.out.println ("EXTRA" + extraTime + " minutes. IN THE MATCH");
+                System.out.println ("KEEP GOING UNTIL " + (extraTime + 90) + " minutes.");
+            }
+            if (minutes == 45 || minutes >= 90)
+            {
+                System.out.print ("Press anything to continue.");
+                String cont = keyboard.next ();
+            }
+        }
+        System.out.println ("FINAL SCORE\n Home: " + homeGoals + "\tAway: " + awayGoals);
+        if (homeGoals > awayGoals)
+        {
+            System.out.println ("HOME WINS");
+        }
+        else if (awayGoals > homeGoals)
+        {
+            System.out.println ("AWAY WINS");
+        }
+        else
+        {
+            System.out.println ("Draw.");
+        }
+        
+    }
+}
